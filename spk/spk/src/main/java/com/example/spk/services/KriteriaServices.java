@@ -14,7 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static org.hibernate.query.sqm.tree.SqmNode.log;
 
@@ -27,13 +29,13 @@ public class KriteriaServices {
     public ResponseEntity<KriteriaResponse> create(KriteriaRequest kriteriaRequest){
         Integer kriteria = kriteriaRepository.cariKriteriaByNama(kriteriaRequest.getNamaKriteria());
         if (kriteria == 1){
-            log.info("Error code : " + HttpStatusCustom.NIK_SUDAH_ADA.getValue() + ", Error message : " + HttpStatusCustom.NIK_SUDAH_ADA.getReasonPhrase());
-            return ResponseEntity.status(HttpStatusCustom.NIK_SUDAH_ADA.getValue()).body(new KriteriaResponse());
+            log.info("Error code : " + HttpStatusCustom.NAMA_SUDAH_ADA.getValue() + ", Error message : " + HttpStatusCustom.NAMA_SUDAH_ADA.getReasonPhrase());
+            return ResponseEntity.status(HttpStatusCustom.NAMA_SUDAH_ADA.getValue()).body(new KriteriaResponse());
         }
 
         Kriteria kriteria1 = new Kriteria();
         kriteria1.setNamaKriteria(kriteriaRequest.getNamaKriteria());
-        kriteria1.setBobot(kriteriaRequest.getBobotKriteria());
+        kriteria1.setBobotKriteria(kriteriaRequest.getBobotKriteria());
         kriteria1.setCreatedDate(new Date());
         kriteria1.setCreatedBy("System");
         kriteria1.setUpdatedDate(new Date());
@@ -43,7 +45,7 @@ public class KriteriaServices {
         KriteriaResponse kriteriaResponse = new KriteriaResponse();
         kriteriaResponse.setId(kriteriaResult.getId());
         kriteriaResponse.setNamaKriteria(kriteriaResult.getNamaKriteria());
-        kriteriaResponse.setBobotKriteria(kriteriaResult.getBobot());
+        kriteriaResponse.setBobotKriteria(kriteriaResult.getBobotKriteria());
         return ResponseEntity.status(HttpStatus.OK).body(kriteriaResponse);
     }
 
@@ -56,12 +58,12 @@ public class KriteriaServices {
 
         Kriteria cekNamaKriteria = kriteriaRepository.selectByNamaKriteria(kriteriaRequest.getNamaKriteria());
         if (cekNamaKriteria != null){
-            log.info("Error code : " + HttpStatusCustom.NIK_SUDAH_ADA.getValue() + ", Error message : " + HttpStatusCustom.NIK_SUDAH_ADA.getReasonPhrase());
-            return ResponseEntity.status(HttpStatusCustom.NIK_SUDAH_ADA.getValue()).body(new KriteriaResponse());
+            log.info("Error code : " + HttpStatusCustom.NAMA_SUDAH_ADA.getValue() + ", Error message : " + HttpStatusCustom.NAMA_SUDAH_ADA.getReasonPhrase());
+            return ResponseEntity.status(HttpStatusCustom.NAMA_SUDAH_ADA.getValue()).body(new KriteriaResponse());
         }
 
         kriteria.setNamaKriteria(kriteriaRequest.getNamaKriteria());
-        kriteria.setBobot(kriteriaRequest.getBobotKriteria());
+        kriteria.setBobotKriteria(kriteriaRequest.getBobotKriteria());
         kriteria.setUpdatedDate(new Date());
         kriteria.setUpdatedBy("System");
         Kriteria kriteriaResult = kriteriaRepository.save(kriteria);
@@ -69,7 +71,7 @@ public class KriteriaServices {
         KriteriaResponse kriteriaResponse =  new KriteriaResponse();
         kriteriaResponse.setId(kriteriaResult.getId());
         kriteriaResponse.setNamaKriteria(kriteriaResult.getNamaKriteria());
-        kriteriaResponse.setBobotKriteria(kriteriaResult.getBobot());
+        kriteriaResponse.setBobotKriteria(kriteriaResult.getBobotKriteria());
         return ResponseEntity.status(HttpStatus.OK).body(kriteriaResponse);
 
     }
@@ -84,6 +86,37 @@ public class KriteriaServices {
         kriteriaRepository.delete(kriteria);
         return ResponseEntity.status(HttpStatus.OK).body("Delete Sukses untuk id : " + id);
 
+    }
+
+    public ResponseEntity<List<KriteriaResponse>> selectAll(){
+        List<Kriteria> kriteriaList = kriteriaRepository.selectAll();
+
+        List<KriteriaResponse> kriteriaResponseList = new ArrayList<>();
+
+        for(Kriteria kriteria : kriteriaList){
+            KriteriaResponse kriteriaResponse = new KriteriaResponse();
+            kriteriaResponse.setId(kriteria.getId());
+            kriteriaResponse.setNamaKriteria(kriteria.getNamaKriteria());
+            kriteriaResponse.setBobotKriteria(kriteria.getBobotKriteria());
+
+            kriteriaResponseList.add(kriteriaResponse);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(kriteriaResponseList);
+    }
+
+    public ResponseEntity<KriteriaResponse> cariKriteriaById(Long id){
+        Kriteria kriteria = kriteriaRepository.cariKriteriaById(id);
+
+        if(kriteria == null){
+            log.info("Metod Select By Id untuk Id : "+ id +" tidak ditemukan");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new KriteriaResponse());
+        }
+
+        KriteriaResponse kriteriaResponse = new KriteriaResponse();
+        kriteriaResponse.setNamaKriteria(kriteria.getNamaKriteria());
+        kriteriaResponse.setId(kriteria.getId());
+        kriteriaResponse.setBobotKriteria(kriteria.getBobotKriteria());
+        return ResponseEntity.status(HttpStatus.OK).body(kriteriaResponse);
     }
 
 }

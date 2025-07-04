@@ -32,11 +32,11 @@ public class Kriteria extends UserAudit{
         this.namaKriteria = namaKriteria;
     }
 
-    public double getBobot() {
+    public double getBobotKriteria() {
         return bobotKriteria;
     }
 
-    public void setBobot(double bobot) {
+    public void setBobotKriteria(double bobot) {
         this.bobotKriteria = bobot;
     }
 }

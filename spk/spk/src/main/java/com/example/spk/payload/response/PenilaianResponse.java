@@ -1,7 +1,6 @@
-package com.example.spk.payload.request;
+package com.example.spk.payload.response;
 
-public class PenilaianRequest {
-
+public class PenilaianResponse {
     private Long id;
     private Long alternatif_id;
     private Integer k1;

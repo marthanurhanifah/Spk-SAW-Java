@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface HasilRepository extends JpaRepository<Hasil, Long> {
+
+
 }

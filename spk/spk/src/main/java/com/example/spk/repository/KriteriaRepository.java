@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface KriteriaRepository extends JpaRepository<Kriteria, Long> {
 
@@ -24,4 +26,7 @@ public interface KriteriaRepository extends JpaRepository<Kriteria, Long> {
     @Query(value = "select * from kriteria " +
             "where nama_kriteria = :nama_kriteria", nativeQuery = true)
     Kriteria selectByNamaKriteria(@Param("nama_kriteria") String namaKriteria);
+
+    @Query(value = "select * from kriteria", nativeQuery = true)
+    List<Kriteria> selectAll();
 }

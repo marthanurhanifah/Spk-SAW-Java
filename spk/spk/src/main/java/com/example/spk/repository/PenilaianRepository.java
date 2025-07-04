@@ -7,10 +7,19 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface PenilaianRepository extends JpaRepository<Penilaian, Long> {
 
     @Query(value = "select * from penilaian " +
             "where id = :id", nativeQuery = true)
     Penilaian selectById(@Param("id") Long id);
+
+    @Query(value = "select * from alternatif", nativeQuery = true)
+    List<Penilaian> selectAll();
+
+    @Query(value = "select * from alternatif " +
+            "where id = :id", nativeQuery = true)
+    Penilaian selectByAlternatifId(@Param("id") Long id);
 }

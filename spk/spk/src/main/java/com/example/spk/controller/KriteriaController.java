@@ -42,4 +42,19 @@ public class KriteriaController {
    public ResponseEntity<String> deletePathVar(@PathVariable("id") Long id) {
      return kriteriaServices.delete(id);
    }
+
+    @GetMapping("/selectAll")
+    public ResponseEntity<List<KriteriaResponse>> selectAll(){
+        return kriteriaServices.selectAll();
+    }
+
+    @GetMapping("/selectWithReqParam")
+    public ResponseEntity<KriteriaResponse> selectWithReqParam(@RequestParam("id") Long id) {
+        return kriteriaServices.cariKriteriaById(id);
+    }
+
+    @GetMapping("/selectPathVar/{id}")
+    public ResponseEntity<KriteriaResponse> selectPathVar(@PathVariable("id") Long id) {
+        return kriteriaServices.cariKriteriaById(id);
+    }
 }
