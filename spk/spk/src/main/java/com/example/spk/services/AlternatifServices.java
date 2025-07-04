@@ -54,7 +54,7 @@ public class AlternatifServices {
          }
 
          Alternatif cekNik = alternatifRepository.selectByNik(alternatifRequest.getNik());
-         if (cekNik != null){
+         if (cekNik != null && ){
              log.info("Error code : " + HttpStatusCustom.NIK_SUDAH_ADA.getValue() + ", Error message : " + HttpStatusCustom.NIK_SUDAH_ADA.getReasonPhrase());
              return ResponseEntity.status(HttpStatusCustom.NIK_SUDAH_ADA.getValue()).body(new AlternatifResponse());
          }

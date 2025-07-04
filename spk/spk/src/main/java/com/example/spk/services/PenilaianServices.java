@@ -63,11 +63,11 @@ public class PenilaianServices {
             return ResponseEntity.status(HttpStatusCustom.ID_TIDAK_DITEMUKAN.getValue()).body(new PenilaianResponse());
         }
 
-//        Penilaian cekNik = alternatifRepository.selectByNik(alternatifRequest.getNik());
-//        if (cekNik != null){
-//            log.info("Error code : " + HttpStatusCustom.NIK_SUDAH_ADA.getValue() + ", Error message : " + HttpStatusCustom.NIK_SUDAH_ADA.getReasonPhrase());
-//            return ResponseEntity.status(HttpStatusCustom.NIK_SUDAH_ADA.getValue()).body(new AlternatifResponse());
-//        }
+        Penilaian cekAlternatifId = penilaianRepository.selectByAlternatifId(penilaianRequest.getAlternatif_id());
+        if (cekAlternatifId != null){
+            log.info("Error code : " + HttpStatusCustom.NIK_SUDAH_ADA.getValue() + ", Error message : " + HttpStatusCustom.NIK_SUDAH_ADA.getReasonPhrase());
+            return ResponseEntity.status(HttpStatusCustom.NIK_SUDAH_ADA.getValue()).body(new PenilaianResponse());
+        }
 
         penilaian.setAlternatif_id(penilaianRequest.getAlternatif_id());
         penilaian.setK1(penilaianRequest.getK1());

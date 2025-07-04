@@ -29,8 +29,8 @@ public class KriteriaServices {
     public ResponseEntity<KriteriaResponse> create(KriteriaRequest kriteriaRequest){
         Integer kriteria = kriteriaRepository.cariKriteriaByNama(kriteriaRequest.getNamaKriteria());
         if (kriteria == 1){
-            log.info("Error code : " + HttpStatusCustom.NAMA_SUDAH_ADA.getValue() + ", Error message : " + HttpStatusCustom.NAMA_SUDAH_ADA.getReasonPhrase());
-            return ResponseEntity.status(HttpStatusCustom.NAMA_SUDAH_ADA.getValue()).body(new KriteriaResponse());
+            log.info("Error code : " + HttpStatusCustom.NAMA_KRITERIA_SUDAH_ADA.getValue() + ", Error message : " + HttpStatusCustom.NAMA_KRITERIA_SUDAH_ADA.getReasonPhrase());
+            return ResponseEntity.status(HttpStatusCustom.NAMA_KRITERIA_SUDAH_ADA.getValue()).body(new KriteriaResponse());
         }
 
         Kriteria kriteria1 = new Kriteria();
@@ -58,8 +58,8 @@ public class KriteriaServices {
 
         Kriteria cekNamaKriteria = kriteriaRepository.selectByNamaKriteria(kriteriaRequest.getNamaKriteria());
         if (cekNamaKriteria != null){
-            log.info("Error code : " + HttpStatusCustom.NAMA_SUDAH_ADA.getValue() + ", Error message : " + HttpStatusCustom.NAMA_SUDAH_ADA.getReasonPhrase());
-            return ResponseEntity.status(HttpStatusCustom.NAMA_SUDAH_ADA.getValue()).body(new KriteriaResponse());
+            log.info("Error code : " + HttpStatusCustom.NAMA_KRITERIA_SUDAH_ADA.getValue() + ", Error message : " + HttpStatusCustom.NAMA_KRITERIA_SUDAH_ADA.getReasonPhrase());
+            return ResponseEntity.status(HttpStatusCustom.NAMA_KRITERIA_SUDAH_ADA.getValue()).body(new KriteriaResponse());
         }
 
         kriteria.setNamaKriteria(kriteriaRequest.getNamaKriteria());
