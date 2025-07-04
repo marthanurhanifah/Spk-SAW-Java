@@ -53,8 +53,13 @@ public class AlternatifServices {
              return ResponseEntity.status(HttpStatusCustom.ID_TIDAK_DITEMUKAN.getValue()).body(new AlternatifResponse());
          }
 
+         if(alternatifRequest.getNik() == null || alternatifRequest.getNik() == ""){
+             log.info("nik untuk id : " + alternatifRequest.getId() + " kosong");
+             return ResponseEntity.status(HttpStatusCustom.NIK_TIDAK_BOLEH_KOSONG.getValue()).body(null);
+         }
+
          Alternatif cekNik = alternatifRepository.selectByNik(alternatifRequest.getNik());
-         if (cekNik != null && ){
+         if (cekNik != null && cekNik.getId() != alternatif.getId()){
              log.info("Error code : " + HttpStatusCustom.NIK_SUDAH_ADA.getValue() + ", Error message : " + HttpStatusCustom.NIK_SUDAH_ADA.getReasonPhrase());
              return ResponseEntity.status(HttpStatusCustom.NIK_SUDAH_ADA.getValue()).body(new AlternatifResponse());
          }

@@ -4,7 +4,8 @@ public enum HttpStatusCustom {
     NIK_SUDAH_ADA(601, "Nik Sudah Ada"),
     ID_TIDAK_DITEMUKAN(602, "Id Tidak Ditemukan"),
     NAMA_KRITERIA_SUDAH_ADA(603, "Nama Sudah Ada"),
-    ID_ALTERNATIF_SUDAH_ADA(604, "Id Alternatif Sudah Ada");
+    ID_ALTERNATIF_SUDAH_ADA(604, "Id Alternatif Sudah Ada"),
+    NIK_TIDAK_BOLEH_KOSONG(605,"ID Tidak Boleh Kosong");
 
     private final int value;
     private final String reasonPhrase;
