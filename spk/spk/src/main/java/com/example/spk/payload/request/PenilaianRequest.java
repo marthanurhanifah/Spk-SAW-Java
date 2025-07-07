@@ -3,7 +3,7 @@ package com.example.spk.payload.request;
 public class PenilaianRequest {
 
     private Long id;
-    private Long alternatif_id;
+    private Long alternatifId;
     private Integer k1;
     private Integer k2;
     private Integer k3;
@@ -18,12 +18,12 @@ public class PenilaianRequest {
         this.id = id;
     }
 
-    public Long getAlternatif_id() {
-        return alternatif_id;
+    public Long getAlternatifId() {
+        return alternatifId;
     }
 
-    public void setAlternatif_id(Long alternatif_id) {
-        this.alternatif_id = alternatif_id;
+    public void setAlternatifId(Long alternatifId) {
+        this.alternatifId = alternatifId;
     }
 
     public Integer getK1() {

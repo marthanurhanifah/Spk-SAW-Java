@@ -3,6 +3,8 @@ package com.example.spk.services;
 import com.example.spk.model.Users;
 import com.example.spk.payload.request.LoginRequest;
 import com.example.spk.repository.UsersRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,8 @@ import java.util.Date;
 
 @Service
 public class UsersServices {
+    private static final Logger log = LoggerFactory.getLogger(Users.class);
+
     @Autowired
     private UsersRepository usersRepository;
 

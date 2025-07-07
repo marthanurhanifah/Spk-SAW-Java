@@ -8,7 +8,8 @@ public class Penilaian extends UserAudit{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long alternatif_id;
+    @Column (name = "alternatif_id")
+    private Long alternatifId;
 
     @Column (name = "k1")
     private Integer k1;
@@ -27,7 +28,6 @@ public class Penilaian extends UserAudit{
 
     // Getter & Setter
 
-
     public Long getId() {
         return id;
     }
@@ -36,12 +36,12 @@ public class Penilaian extends UserAudit{
         this.id = id;
     }
 
-    public Long getAlternatif_id() {
-        return alternatif_id;
+    public Long getAlternatifId() {
+        return alternatifId;
     }
 
-    public void setAlternatif_id(Long alternatif_id) {
-        this.alternatif_id = alternatif_id;
+    public void setAlternatifId(Long alternatifId) {
+        this.alternatifId = alternatifId;
     }
 
     public Integer getK1() {

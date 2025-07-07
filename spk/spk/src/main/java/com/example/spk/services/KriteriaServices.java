@@ -9,6 +9,8 @@ import com.example.spk.payload.response.AlternatifResponse;
 import com.example.spk.payload.response.KriteriaResponse;
 import com.example.spk.repository.AlternatifRepository;
 import com.example.spk.repository.KriteriaRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +20,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static org.hibernate.query.sqm.tree.SqmNode.log;
 
 @Service
 public class KriteriaServices {
+    private static final Logger log = LoggerFactory.getLogger(KriteriaServices.class);
 
     @Autowired
     private KriteriaRepository kriteriaRepository;
@@ -56,8 +58,13 @@ public class KriteriaServices {
             return ResponseEntity.status(HttpStatusCustom.ID_TIDAK_DITEMUKAN.getValue()).body(new KriteriaResponse());
         }
 
+        if(kriteriaRequest.getNamaKriteria() == null || kriteriaRequest.getNamaKriteria() == ""){
+            log.info("nama kriteria untuk id : " + kriteriaRequest.getId() + " kosong");
+            return ResponseEntity.status(HttpStatusCustom.NAMA_KRITERIA_TIDAK_BOLEH_KOSONG.getValue()).body(null);
+        }
+
         Kriteria cekNamaKriteria = kriteriaRepository.selectByNamaKriteria(kriteriaRequest.getNamaKriteria());
-        if (cekNamaKriteria != null){
+        if (cekNamaKriteria != null && cekNamaKriteria.getId() != kriteria.getId()){
             log.info("Error code : " + HttpStatusCustom.NAMA_KRITERIA_SUDAH_ADA.getValue() + ", Error message : " + HttpStatusCustom.NAMA_KRITERIA_SUDAH_ADA.getReasonPhrase());
             return ResponseEntity.status(HttpStatusCustom.NAMA_KRITERIA_SUDAH_ADA.getValue()).body(new KriteriaResponse());
         }

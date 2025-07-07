@@ -3,9 +3,11 @@ package com.example.spk.enumeration;
 public enum HttpStatusCustom {
     NIK_SUDAH_ADA(601, "Nik Sudah Ada"),
     ID_TIDAK_DITEMUKAN(602, "Id Tidak Ditemukan"),
-    NAMA_KRITERIA_SUDAH_ADA(603, "Nama Sudah Ada"),
+    NAMA_KRITERIA_SUDAH_ADA(603, "Nama kriteria Sudah Ada"),
     ID_ALTERNATIF_SUDAH_ADA(604, "Id Alternatif Sudah Ada"),
-    NIK_TIDAK_BOLEH_KOSONG(605,"ID Tidak Boleh Kosong");
+    NIK_TIDAK_BOLEH_KOSONG(605,"ID Tidak Boleh Kosong"),
+    NAMA_KRITERIA_TIDAK_BOLEH_KOSONG(606,"Nama Kriteria Tidak Ditemukan"),
+    ALTERNATIF_ID_TIDAK_BOLEH_KOSONG(607,"Alternatif Id TIdak Boleh Kosong");
 
     private final int value;
     private final String reasonPhrase;
