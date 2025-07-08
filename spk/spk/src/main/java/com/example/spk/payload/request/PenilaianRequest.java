@@ -22,7 +22,7 @@ public class PenilaianRequest {
         return alternatifId;
     }
 
-    public void setAlternatifId(Long alternatifId) {
+    public void setAlternatifId() {
         this.alternatifId = alternatifId;
     }
 

@@ -23,7 +23,7 @@ public interface PenilaianRepository extends JpaRepository<Penilaian, Long> {
             "where id = :id", nativeQuery = true)
     Penilaian selectById(@Param("id") Long id);
 
-    @Query(value = "select * from alternatif", nativeQuery = true)
+    @Query(value = "select * from penilaian", nativeQuery = true)
     List<Penilaian> selectAll();
 
     @Query(value = "select * from penilaian " +

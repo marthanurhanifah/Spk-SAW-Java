@@ -28,9 +28,9 @@ public class PenilaianServices {
     private PenilaianRepository penilaianRepository;
 
     public ResponseEntity<PenilaianResponse> create(PenilaianRequest penilaianRequest){
-        Penilaian penilaian = penilaianRepository.selectByAlternatifId(penilaianRequest.getAlternatifId());
-        if (penilaian == null){
-            log.info("Error code : " + HttpStatusCustom.ID_ALTERNATIF_SUDAH_ADA.getValue() + ", Error message : " + HttpStatusCustom.NIK_SUDAH_ADA.getReasonPhrase());
+        Integer penilaian = penilaianRepository.cariAlternatifById(penilaianRequest.getAlternatifId());
+        if (penilaian == 1){
+            log.info("Error code : " + HttpStatusCustom.ID_ALTERNATIF_SUDAH_ADA.getValue() + ", Error message : " + HttpStatusCustom.ID_ALTERNATIF_SUDAH_ADA.getReasonPhrase());
             return ResponseEntity.status(HttpStatusCustom.ID_ALTERNATIF_SUDAH_ADA.getValue()).body(new PenilaianResponse());
         }
 
