@@ -80,13 +80,18 @@ public class AlternatifServices {
 
     public ResponseEntity<String> delete(Long id){
         Alternatif alternatif = alternatifRepository.selectById(id);
+
+        AlternatifResponse alternatifResponse = new AlternatifResponse();
+        alternatifResponse.setNik(alternatif.getNik());
+        alternatifResponse.setNamaPasien(alternatif.getNamaPasien());
+
         if (alternatif == null) {
             log.info("Error code : " + HttpStatusCustom.ID_TIDAK_DITEMUKAN.getValue() + ", Error message : " + HttpStatusCustom.ID_TIDAK_DITEMUKAN.getReasonPhrase());
             return ResponseEntity.status(HttpStatusCustom.ID_TIDAK_DITEMUKAN.getValue()).body(HttpStatusCustom.ID_TIDAK_DITEMUKAN.getReasonPhrase());
         }
 
         alternatifRepository.delete(alternatif);
-        return ResponseEntity.status(HttpStatus.OK).body("Delete Sukses untuk id : " + id);
+        return ResponseEntity.status(HttpStatus.OK).body("Delete Sukses untuk NIK : "+ alternatifResponse.getNik() +" dan Nama : " + alternatifResponse.getNamaPasien());
 
     }
 

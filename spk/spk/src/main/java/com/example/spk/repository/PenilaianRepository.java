@@ -17,7 +17,7 @@ public interface PenilaianRepository extends JpaRepository<Penilaian, Long> {
             "    end as cek_penilaian " +
             "from penilaian " +
             "where alternatif_id = :alternatifId", nativeQuery = true)
-    Integer cariAlternatifById(@Param("alternatifId") String alternatifId);
+    Integer cariAlternatifById(@Param("alternatifId") Long alternatifId);
 
     @Query(value = "select * from penilaian " +
             "where id = :id", nativeQuery = true)
