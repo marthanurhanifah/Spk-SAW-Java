@@ -26,7 +26,63 @@ public class Penilaian extends UserAudit{
     @Column (name = "k5")
     private Integer k5;
 
+    @Column (name = "k1_hasil")
+    private Double k1Hasil;
+
+    @Column (name = "k2_hasil")
+    private Double k2Hasil;
+
+    @Column (name = "k3_hasil")
+    private Double k3Hasil;
+
+    @Column (name = "k4_hasil")
+    private Double k4Hasil;
+
+    @Column (name = "k5_hasil")
+    private Double k5Hasil;
+
+
     // Getter & Setter
+
+    public Double getK1Hasil() {
+        return k1Hasil;
+    }
+
+    public void setK1Hasil(Double k1Hasil) {
+        this.k1Hasil = k1Hasil;
+    }
+
+    public Double getK2Hasil() {
+        return k2Hasil;
+    }
+
+    public void setK2Hasil(Double k2Hasil) {
+        this.k2Hasil = k2Hasil;
+    }
+
+    public Double getK3Hasil() {
+        return k3Hasil;
+    }
+
+    public void setK3Hasil(Double k3Hasil) {
+        this.k3Hasil = k3Hasil;
+    }
+
+    public Double getK4Hasil() {
+        return k4Hasil;
+    }
+
+    public void setK4Hasil(Double k4Hasil) {
+        this.k4Hasil = k4Hasil;
+    }
+
+    public Double getK5Hasil() {
+        return k5Hasil;
+    }
+
+    public void setK5Hasil(Double k5Hasil) {
+        this.k5Hasil = k5Hasil;
+    }
 
     public Long getId() {
         return id;

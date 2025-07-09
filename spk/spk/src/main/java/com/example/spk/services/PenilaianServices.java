@@ -38,6 +38,7 @@ public class PenilaianServices {
         penilaian1.setAlternatifId(penilaianRequest.getAlternatifId());
         penilaian1.setId(penilaianRequest.getId());
         penilaian1.setK1(penilaianRequest.getK1());
+        penilaian1.setK1Hasil(Double.valueOf(penilaianRequest.getK1())/5);
         penilaian1.setK2(penilaianRequest.getK2());
         penilaian1.setK3(penilaianRequest.getK3());
         penilaian1.setK4(penilaianRequest.getK4());
@@ -52,6 +53,7 @@ public class PenilaianServices {
         penilaianResponse.setId(penilaianResult.getId());
         penilaianResponse.setAlternatifId(penilaianResult.getAlternatifId());
         penilaianResponse.setK1(penilaianResult.getK1());
+        penilaianResponse.setK1Hasil(penilaianResult.getK1Hasil());
         penilaianResponse.setK2(penilaianResult.getK2());
         penilaianResponse.setK3(penilaianResult.getK3());
         penilaianResponse.setK4(penilaianResult.getK4());
